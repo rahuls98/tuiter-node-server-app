@@ -37,17 +37,21 @@ export const findUserByCredentials = (username, password) => {
     return null;
 };
 
-export const createUser = (user) =>
-    users.push({
+export const createUser = (user) => {
+    const userObj = {
         _id: users.length + 1,
         ...user,
-    });
+    };
+    users.push(userObj);
+    return userObj;
+};
 
 export const updateUser = (uid, user) => {
     const index = users.findIndex((u) => u._id === uid);
     users[index] = { ...users[index], ...user };
-    return { status: "ok" };
+    return users[index];
 };
+
 export const deleteUser = (uid) => {
     const index = users.findIndex((u) => u._id === uid);
     users.splice(index, 1);

@@ -42,8 +42,8 @@ const AuthController = (app) => {
     const update = (req, res) => {
         const uid = req.params.id;
         const updatedUser = req.body;
-        usersDao.updateUser(uid, updatedUser);
-        res.json(updatedUser);
+        let update = usersDao.updateUser(uid, updatedUser);
+        res.json(update);
     };
 
     app.post("/api/users/register", register);
