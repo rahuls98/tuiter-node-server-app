@@ -1,17 +1,4 @@
-let users = [
-    {
-        username: "user1",
-        password: "password",
-        firstName: "User",
-        lastName: "1",
-    },
-    {
-        username: "user2",
-        password: "password",
-        firstName: "User",
-        lastName: "2",
-    },
-];
+let users = [];
 
 export const findAllUsers = () => users;
 
@@ -35,13 +22,21 @@ export const findUserByCredentials = (username, password) => {
     return null;
 };
 
-export const createUser = (user) => users.push(user);
+export const createUser = (user) => {
+    const userObj = {
+        _id: users.length + 1,
+        ...user,
+    };
+    users.push(userObj);
+    return userObj;
+};
 
 export const updateUser = (uid, user) => {
-    const index = users.findIndex((u) => u._id === uid);
+    const index = users.findIndex((u) => u._id === Number(uid));
     users[index] = { ...users[index], ...user };
-    return { status: "ok" };
+    return { status: "ok", user: users[index] };
 };
+
 export const deleteUser = (uid) => {
     const index = users.findIndex((u) => u._id === uid);
     users.splice(index, 1);
