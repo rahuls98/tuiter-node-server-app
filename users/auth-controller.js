@@ -44,6 +44,7 @@ const AuthController = (app) => {
         const updatedUser = req.body;
         let response = usersDao.updateUser(uid, updatedUser);
         if (response.status === "ok") {
+            req.session["currentUser"] = response.user;
             res.json(response.user);
         } else {
             res.sendStatus(500);
