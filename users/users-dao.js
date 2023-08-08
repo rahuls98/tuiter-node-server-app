@@ -1,11 +1,13 @@
 let users = [
     {
+        _id: 1,
         username: "user1",
         password: "password",
         firstName: "User",
         lastName: "1",
     },
     {
+        _id: 2,
         username: "user2",
         password: "password",
         firstName: "User",
@@ -35,7 +37,11 @@ export const findUserByCredentials = (username, password) => {
     return null;
 };
 
-export const createUser = (user) => users.push(user);
+export const createUser = (user) =>
+    users.push({
+        _id: users.length + 1,
+        ...user,
+    });
 
 export const updateUser = (uid, user) => {
     const index = users.findIndex((u) => u._id === uid);
