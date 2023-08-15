@@ -12,6 +12,8 @@ const schema = mongoose.Schema(
         likes: Number,
         handle: String,
         tuit: String,
+        dislikes: Number,
+        disliked: Boolean,
     },
     { collection: "tuits" }
 );
